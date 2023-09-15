@@ -31,6 +31,18 @@ git clone https://github.com/alexnxela/iris-recorder-helper.git
 docker-compose up -d 
 ```
 
+## How to setup
+ You should put the parameters file here **./rh/flask/config.json**
+```json
+{
+  "OPENAI_KEY": "sk-***",
+  "OPENAI_MAX_TOKENS": 10000,
+  "OPENAI_MAX_TEMP": 0.9,
+  "IRIS_URL":"iris://_SYSTEM:SYS@iris:1972/USER"
+}
+```
+You can get the key **OPENAI_KEY** here https://platform.openai.com/account/api-keys
+
 ## How to run it
 ### Run the python script in iris container:
 
