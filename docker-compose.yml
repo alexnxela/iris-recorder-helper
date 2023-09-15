@@ -8,9 +8,11 @@ services:
         - DOCKER_BUILDKIT=1
     restart: always
     ports:
+      # IRIS native
       - 1972
-      - 55038:52773
-      - 53773
-      - 55030:5000
+      # IRIS web http://localhost:52773/csp/sys/UtilHome.csp
+      - 52773
+      # IRIS Recorder helper http://localhost:5000
+      - 5000
     volumes:
       - ./:/home/irisowner/dev
