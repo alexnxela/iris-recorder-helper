@@ -45,7 +45,8 @@ def init_app():
             msgs = ''
             if records:
                 for record in records:
-                    msgs += "\n"+record.text
+                    if record.text:
+                        msgs += "\n"+record.text
             else:
                 raise "Msgs is empty"
 
