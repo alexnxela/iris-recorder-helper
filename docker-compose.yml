@@ -9,10 +9,10 @@ services:
     restart: always
     ports:
       # IRIS native
-      - 1972
+      - 0.0.0.0:1972:1972
       # IRIS web http://localhost:52773/csp/sys/UtilHome.csp
-      - 52773
+      - 0.0.0.0:52773:52773
       # IRIS Recorder helper http://localhost:5000
-      - 5000
+      - 0.0.0.0:5000:5000
     volumes:
       - ./:/home/irisowner/dev
