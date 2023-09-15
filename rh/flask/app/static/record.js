@@ -26,11 +26,14 @@ function initRecord(cb) {
 
             mediaRecorder.onstop = function () {
                 $mic_off.hide();
-                $mic_on.show();
 
-                stream.getTracks()
-                    .forEach( track => track.stop() );
-                mediaRecorder = null;
+                setTimeout(function () {
+                    $mic_on.show();
+
+                    stream.getTracks()
+                        .forEach( track => track.stop() );
+                    mediaRecorder = null;
+                }, 1000);
             };
 
             if (cb) {
@@ -99,8 +102,8 @@ $records_loader = $('.records-loader')
 function saveAudio(data) {
     $records_loader.removeClass('d-none');
     console.log('save audio');
-    const audioBlob = new Blob([data], {type: 'audio/wav'});
 
+    const audioBlob = new Blob([data], {type: 'audio/wav'});
     const formData = new FormData();
     formData.append('content', audioBlob);
     formData.append('date_created', new Date().toISOString());
