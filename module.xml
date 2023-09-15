@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+  <Document name="iris-record-helper.ZPM">
+    <Module>
+      <Name>iris-record-helper</Name>
+      <Version>1.0.1</Version>
+      <Description>The simplest app for records transcribe to text on embedded python</Description>
+      <Packaging>module</Packaging>
+      <FileCopy Name="rh/" Target="${libdir}rh/"/>
+    </Module>
+  </Document>
+</Export>

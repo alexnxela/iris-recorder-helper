@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IRIS record helper</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEQ0lEQVRoge1ZaWgTQRSO1hvvGwUR1B+KByg2u1s1HqDiHxEPEMQDEcQ/HqgIKqKC/hDvH6IIghbvA/SPilC01RyNiFhbDUoyG1vxbLXVNqhdvzfdbWZtG7O62zWYB0Mmk5k33/femzdHPJ6sZOXfkQKf1i4gxxYEZJYfkNgzfNbwQnWJnfEr8fnUx22czQrAzSGgQVnVUpWApJYFJXW223hNAmDbYOl6E1BYHp9Pqeh18bcfQS/b6jZuLgFZ3Wi2MisIKGxmeEK4vdGH6tQGD9019fWyDW5i94TkmBKU2HfdqvVE5ndjEEKbG72FsX5v3NsaWJsHI6tFgkW3pzsOXtrZOE5S7zmJsUV5IMXGiwvTSna5uFDL0ddHw/i8+DgnsTYrAL0jaUW22ur4kKyu+RPv2SZw/SUDwANJHW51PGJ/RDIrqRecwJhSMHGhASAyO9LR6vgCX7ST4IFCJzCmFIRQsZF9/liHno1Il53Y0pv8fyRQXZYY86W0bp6maTlcRyYR+BzR+lWX1n2tKUto+FzPdWQSgZrSxHgCrxM4xnVkCfyFZAl4MoxAbVntUACvbyCQ2M11ZBIBEgBfjFS65+NLrQfXkWkEmuhoLQK4Tc3FgasKp87Lmkdrw9scIEC60XYF3ytpTrvw4+TJrhkHL7/35QA+uQMESLdwRL9mF366eV1IEoiP4G2OEDAdsc/bhZ/O/oeEo+8U3iart422wkmsl1WduEP0Tt7o2E2dwFRhngP2EZDZFmGypdQGC50y2oqlWJ5VnYjxycJLxkk+j5ctF66pm2wjEFDi04TYPMsnk9gywVoHLeuU1MPG+JASX8LbhFA1PG2L8HcdykINsVnFb1MTX/VBaNXq6+BLOK98SLr6/N7oUGMsrP+VQlC/oX3SrV9p+xMkvXf++iAFL+wTXF5c4HvT9Xd6ipR33dD/oTBuL9ePkBGeWk7bCp4kJKuj+ZNgg8Xf0yJ85Iv2xMQvhFh+jPYxLenAIh2LNfRE6B8J5Ea6hyeU9wXoj8nHruhI2wmQUGoTrHSLv0bnxkYByAdhjXwHwasgtpIWKi+oU143DGAYgYByHZJ6R2jPdwQ8CW00mKxCIHGcHqnoWQXfS03vnikKdJSEFTaMxsIjJwR95fflF/0dI0ASklQfrPlNzOEUSvS0QmsDXnqdAngF+q8rGVXSgdYC+l43ey423VHwhtA5JZlFOIm3fpmtpXDAeaYt7QsEFAD384I6PQTTb1RoLxE9iT4JEFjUKuANCcqxGZTuTBaWmYpyBPVZdCxAaHXGAu2iHxFmYa0cpT4mz2Dx0j7TquAbSUyMDqSUl27sNxNSN0BysCvgTUSwayIEzgFQXRqg62g3p+zkNu4mou/O8xDjuwE2LAAPo20X/UZ93MaZlgSV+KpGAqi7jceyZDwBv6yuEM5Oy93GY1mKFDYIKfM5/XdMdbfxZCUrLchPnXlyWQoR86IAAAAASUVORK5CYII="
+          rel="icon" type="image/x-icon">
+
+</head>
+<body>
+<style>
+    .mic-on, .mic-off {
+        cursor: pointer;
+    }
+
+    .ico {
+        width: 128px;
+        height: 128px;
+    }
+</style>
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-none alert-mic alert alert-danger mt-4" role="alert">
+                Allow microphone access
+            </div>
+            <div class="text-center mt-4">
+                Your session key: <a href="/?key=" class="session-key" target="_blank">empty</a>, or <a href="javascript:window.location.href='/?key='+generateUUID();">make new session</a>
+            </div>
+
+            <div class="mic p-4 d-flex align-items-center justify-content-center">
+                <button type="submit" class="mic-enable btn btn-lg btn-primary">Enable microphone</button>
+
+                <div class="mic">
+                    <div class="mic-on d-none">
+                        <div class="ico">
+                            <?xml version="1.0" ?>
+                            <svg data-name="Layer 1" id="Layer_1" viewBox="0 0 32 32"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <style>.cls-1 {
+                                        fill: #f4d7f9;
+                                    }
+
+                                    .cls-2 {
+                                        fill: #c939e2;
+                                    }</style>
+                                </defs>
+                                <title/>
+                                <path class="cls-1"
+                                      d="M18.8,15.07a.93.93,0,0,1-.93-.94v-2.8a.93.93,0,0,1,1.86,0v2.8A.93.93,0,0,1,18.8,15.07Z"/>
+                                <path class="cls-2"
+                                      d="M16,24.4a6.54,6.54,0,0,0,6.53-6.53V8.53a6.53,6.53,0,0,0-13.06,0v9.34A6.54,6.54,0,0,0,16,24.4ZM11.33,8.53a4.67,4.67,0,0,1,9.34,0v9.34a4.67,4.67,0,0,1-9.34,0Z"/>
+                                <path class="cls-2"
+                                      d="M25.8,17.4c0-.18,0-.34,0-.52a.94.94,0,0,0-1-.88.93.93,0,0,0-.87,1v.41a7.93,7.93,0,0,1-15.86,0V17a.93.93,0,0,0-.87-1,.94.94,0,0,0-1,.88c0,.18,0,.34,0,.52a9.81,9.81,0,0,0,8.87,9.75v1.92a.93.93,0,0,0,1.86,0V27.15A9.81,9.81,0,0,0,25.8,17.4Z"/>
+                            </svg>
+                        </div>
+                        <div class="text-center">Click to record</div>
+                    </div>
+                    <div class="mic-off d-none">
+                        <div class="ico">
+                            <?xml version="1.0" ?>
+                            <svg data-name="Layer 1" id="Layer_1" viewBox="0 0 32 32"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <style>.cls-1 {
+                                        fill: #f4d7f9;
+                                    }
+
+                                    .cls-2 {
+                                        fill: #c939e2;
+                                    }</style>
+                                </defs>
+                                <title/>
+                                <path class="cls-1"
+                                      d="M18.57,15.07a.94.94,0,0,1-.94-.94v-2.8a.94.94,0,0,1,1.87,0v2.8A.94.94,0,0,1,18.57,15.07Z"/>
+                                <path class="cls-2"
+                                      d="M15.77,24.4a6.54,6.54,0,0,0,6.53-6.53V8.53a6.54,6.54,0,0,0-13.07,0v9.34A6.54,6.54,0,0,0,15.77,24.4ZM11.1,8.53a4.67,4.67,0,0,1,9.33,0v9.34a4.67,4.67,0,0,1-9.33,0Z"/>
+                                <path class="cls-2"
+                                      d="M25.57,17.4c0-.18,0-.34,0-.52a1,1,0,0,0-1-.88.94.94,0,0,0-.88,1c0,.14,0,.27,0,.41a7.94,7.94,0,0,1-15.87,0c0-.14,0-.27,0-.41A.93.93,0,1,0,6,16.88c0,.18,0,.34,0,.52a9.81,9.81,0,0,0,8.86,9.75v1.92a.94.94,0,0,0,1.87,0V27.15A9.81,9.81,0,0,0,25.57,17.4Z"/>
+                                <path class="cls-1"
+                                      d="M27.43,29.53a1,1,0,0,1-.66-.27L3.91,6.39a.92.92,0,0,1,0-1.32.94.94,0,0,1,1.32,0L28.09,27.94a.93.93,0,0,1-.66,1.59Z"/>
+                            </svg>
+                        </div>
+                        <div class="text-center">Click to stop</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 p-4">
+            <div class="card">
+                <div class="card-header">
+                    Transcripts of conversations
+                </div>
+                <div class="card-body">
+                    <div class="text-center p-4 records-loader d-none">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                    <div class="records-block list-group">
+                        <pre class="empty">Empty..</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 p-4">
+            <div class="card">
+                <div class="card-header">
+                    Prompt for summarize
+                </div>
+                <div class="card-body">
+
+                    <form>
+                        <div class="mb-3">
+                            <div class="form-group">
+                                <textarea class="form-control" id="prompt" rows="3">Make a summary of the text in the << >> block, select agreements and the most important ones from there
+<<${MSGS}>></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-make-sense btn btn-primary">Make sense</button>&nbsp;
+                        <div class="btn-make-sense-loader d-none spinner-border" role="status">
+                            <span class="sr-only">&nbsp;</span>
+                        </div>
+                    </form>
+
+                    <div class="row">
+                        <div class="col-12 mt-4">
+                            <pre class="summary-results">Empty..</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="record.js"></script>
+</body>
+</html>

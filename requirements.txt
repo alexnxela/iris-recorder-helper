@@ -1,0 +1,5 @@
+sqlalchemy-iris
+flask
+flask_sqlalchemy
+requests
+openai
