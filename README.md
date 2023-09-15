@@ -4,8 +4,8 @@ The iris-recorder-helper application is an assistant in recording audio sessions
 The application is based on InterSystems IRIS, Python (Flask, SQLALchemy ORM) and simple Javascript with jQuery and Bootstrap 5
 
 # In practice
+![Main](https://github.com/alexnxela/iris-recorder-helper/blob/master/demo/main.png?raw=true)
 
-![main](https://github![img.png](img.png).com/alexnxela/iris-recorder-helper/demo/main)
 
 # Features
 * Convert voice to text
