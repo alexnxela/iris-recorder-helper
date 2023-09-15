@@ -1,0 +1,14 @@
+version: '3.6'
+services:
+  ngrok:
+    image: ngrok/ngrok:latest
+    restart: always
+    environment:
+      - NGROK_PROTOCOL=https
+      - NGROK_PORT=iris:5000
+      - NGROK_AUTHTOKEN=${NGROK_AUTH}
+    ports:
+      - 0.0.0.0:4040:4040
+    command:
+      - "http"
+      - "iris:5000"
