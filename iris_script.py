@@ -11,7 +11,7 @@ iris.system.Process.SetNamespace("%SYS")
 iris.cls('Security.Users').UnExpireUserPasswords("*")
 
 # switch namespace to IRISAPP built by merge.cpf
-iris.system.Process.SetNamespace("USER")
+iris.system.Process.SetNamespace("IRISAPP")
 
 # load ipm package listed in module.xml
 #iris.cls('%ZPM.PackageManager').Shell("load /home/irisowner/dev -v")
