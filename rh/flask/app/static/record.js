@@ -51,10 +51,10 @@ $mic_enable.click(function (e) {
 $mic_on.click(function (e) {
     e.preventDefault();
     if (mediaRecorder) {
-        mediaRecorder.start(3000);
+        mediaRecorder.start(20000);
     } else {
         initRecord(() => {
-            mediaRecorder.start(3000);
+            mediaRecorder.start(20000);
         });
     }
 });
