@@ -32,10 +32,12 @@
             </div>
             <div class="text-center mt-4">
                 Your session key: <a href="/?key=" class="session-key" target="_blank">empty</a>, or <a href="javascript:window.location.href='/?key='+generateUUID();">make new session</a>
+                <div>&nbsp;</div>
+                <button type="submit" class="mic-enable btn btn-lg btn-primary">Enable microphone</button>
+                <button type="submit" class="mic-disable btn btn-lg btn-outline-secondary d-none">Disable microphone</button>
             </div>
 
             <div class="mic p-4 d-flex align-items-center justify-content-center">
-                <button type="submit" class="mic-enable btn btn-lg btn-primary">Enable microphone</button>
 
                 <div class="mic">
                     <div class="mic-on d-none">
@@ -61,7 +63,7 @@
                                       d="M25.8,17.4c0-.18,0-.34,0-.52a.94.94,0,0,0-1-.88.93.93,0,0,0-.87,1v.41a7.93,7.93,0,0,1-15.86,0V17a.93.93,0,0,0-.87-1,.94.94,0,0,0-1,.88c0,.18,0,.34,0,.52a9.81,9.81,0,0,0,8.87,9.75v1.92a.93.93,0,0,0,1.86,0V27.15A9.81,9.81,0,0,0,25.8,17.4Z"/>
                             </svg>
                         </div>
-                        <div class="text-center">Click to record</div>
+                        <div class="text-center">Push to start</div>
                     </div>
                     <div class="mic-off d-none">
                         <div class="ico">
@@ -88,7 +90,7 @@
                                       d="M27.43,29.53a1,1,0,0,1-.66-.27L3.91,6.39a.92.92,0,0,1,0-1.32.94.94,0,0,1,1.32,0L28.09,27.94a.93.93,0,0,1-.66,1.59Z"/>
                             </svg>
                         </div>
-                        <div class="text-center">Click to stop</div>
+                        <div class="text-center">Press to stop</div>
                     </div>
                 </div>
             </div>
@@ -122,9 +124,9 @@
                     <form>
                         <div class="mb-3">
                             <div class="form-group">
-                                <textarea class="form-control" id="prompt" rows="3">Make a summary of the text in the << >> block, select agreements and the most important ones from there
-<<${MSGS}>></textarea>
+                                <textarea class="form-control" id="prompt" rows="3">Summarize into one sentence: ${MSGS}</textarea>
                             </div>
+                            <small>${MSGS} will be replaced with messages from the left column</small>
                         </div>
                         <button type="submit" class="btn-make-sense btn btn-primary">Make sense</button>&nbsp;
                         <div class="btn-make-sense-loader d-none spinner-border" role="status">

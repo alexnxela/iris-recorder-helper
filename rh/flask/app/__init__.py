@@ -52,6 +52,7 @@ def init_app():
 
             prompt = prompt.replace("${MSGS}", msgs)
 
+            """
             print('PROMPT:', prompt)
 
             response = openai.Completion.create(
@@ -59,10 +60,19 @@ def init_app():
                 prompt=prompt,
                 temperature=JSON_CONFIG['OPENAI_MAX_TEMP']
             )
+            print(response)
+            """
+
+            response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "user", "content": prompt},
+                ],
+            )
 
             print(response)
 
-            msg = response.choices[0].text.strip()
+            msg = response["choices"][0]["message"]["content"].strip()
 
             return jsonify({"msg":msg})
         except Exception as e:

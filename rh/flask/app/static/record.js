@@ -1,13 +1,17 @@
-let mediaRecorder;
+let mediaRecorder = null;
 let mediaRecorderStream = null;
+let mediaChunks = [];
+let mediaChunkFirst = null;
+let mediaChunkNum = 0;
 
-$mic_on = $('.mic-on');
-$mic_off = $('.mic-off');
+$mic_start = $('.mic-on');
+$mic_stop = $('.mic-off');
 $mic_enable = $('.mic-enable');
+$mic_disable = $('.mic-disable');
 
 window.session_key = null;
 
-function initRecord(cb) {
+function initMic() {
     navigator.mediaDevices.getUserMedia({audio: true})
         .then(function (stream) {
             mediaRecorderStream = stream;
@@ -15,29 +19,32 @@ function initRecord(cb) {
 
             mediaRecorder.ondataavailable = function (e) {
                 if (e.data.size > 0) {
-                    saveAudio(e.data);
+                    if (mediaChunkFirst === null) {
+                        mediaChunkFirst = e.data
+                        return;
+                    }
+
+                    mediaChunks.push(e.data);
+                    mediaChunkNum++;
+                    console.log('iteration: ', mediaChunkNum);
+                    if (mediaChunkNum > 10) {
+                        saveAudio();
+                    }
                 }
             };
 
             mediaRecorder.onstart = function () {
-                $mic_on.hide();
-                $mic_off.removeClass('d-none').show();
+                $mic_start.addClass('d-none');
+                $mic_stop.removeClass('d-none');
             };
 
             mediaRecorder.onstop = function () {
-                $mic_off.hide();
+                $mic_stop.addClass('d-none');
+                $mic_start.removeClass('d-none');
 
-                setTimeout(function () {
-                    $mic_on.show();
-
-                    stream.getTracks()
-                        .forEach( track => track.stop() );
-                    mediaRecorder = null;
-                }, 1000);
-            };
-
-            if (cb) {
-                cb();
+                if (mediaChunkNum > 0) {
+                    saveAudio();
+                }
             }
         })
         .catch(function (error) {
@@ -45,24 +52,38 @@ function initRecord(cb) {
         });
 }
 
-$mic_enable.click(function (e) {
-    $mic_enable.hide();
-    $mic_on.removeClass('d-none');
-    initRecord();
-});
-
-$mic_on.click(function (e) {
+$mic_disable.click(function (e) {
     e.preventDefault();
-    if (mediaRecorder) {
-        mediaRecorder.start(20000);
-    } else {
-        initRecord(() => {
-            mediaRecorder.start(20000);
-        });
+    $mic_disable.addClass('d-none');
+    $mic_enable.removeClass('d-none');
+    $mic_start.addClass('d-none');
+    $mic_stop.addClass('d-none');
+
+    if (mediaRecorderStream) {
+        mediaRecorderStream.getTracks().forEach( track => track.stop() );
     }
 });
 
-$mic_off.click(function (e) {
+$mic_enable.click(function (e) {
+    console.log('mic enable');
+    e.preventDefault();
+    $mic_enable.addClass('d-none');
+    $mic_disable.removeClass('d-none');
+    $mic_start.removeClass('d-none');
+    initMic();
+});
+
+$mic_start.click(function (e) {
+    console.log('mic start record');
+    e.preventDefault();
+    if (mediaRecorder) {
+        mediaRecorder.start(1000);
+        return;
+    }
+    alert('Mic error');
+});
+
+$mic_stop.click(function (e) {
     e.preventDefault();
     mediaRecorder.stop();
 });
@@ -99,11 +120,16 @@ $('.session-key').text(window.session_key).attr('href', '/?key='+window.session_
 $records = $('.records-block');
 $records_loader = $('.records-loader')
 
-function saveAudio(data) {
-    $records_loader.removeClass('d-none');
-    console.log('save audio');
+function saveAudio() {
+    let data = [mediaChunkFirst];
+    data = data.concat(mediaChunks);
+    mediaChunks = [];
+    mediaChunkNum = 0;
 
-    const audioBlob = new Blob([data], {type: 'audio/wav'});
+    $records_loader.removeClass('d-none');
+    console.log('save audio', data);
+
+    const audioBlob = new Blob(data, {type: 'audio/wav'});
     const formData = new FormData();
     formData.append('content', audioBlob);
     formData.append('date_created', new Date().toISOString());
