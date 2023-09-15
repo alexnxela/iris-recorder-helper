@@ -36,7 +36,6 @@ docker-compose up -d
 ```json
 {
   "OPENAI_KEY": "sk-***",
-  "OPENAI_MAX_TOKENS": 10000,
   "OPENAI_MAX_TEMP": 0.9,
   "IRIS_URL":"iris://_SYSTEM:SYS@iris:1972/USER"
 }

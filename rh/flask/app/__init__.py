@@ -57,9 +57,10 @@ def init_app():
             response = openai.Completion.create(
                 model="text-davinci-003",
                 prompt=prompt,
-                max_tokens=JSON_CONFIG['OPENAI_MAX_TOKENS'],
                 temperature=JSON_CONFIG['OPENAI_MAX_TEMP']
             )
+
+            print(response)
 
             msg = response.choices[0].text.strip()
 
