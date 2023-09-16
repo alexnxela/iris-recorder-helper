@@ -227,4 +227,12 @@ $btn_make_sense.click(function (e) {
         }
     });
 
-})
+});
+
+
+if ("wakeLock" in navigator) {
+    navigator.wakeLock.request("screen").then(function(wakeLockObj) {
+    }).catch(function(err) {
+        console.error(err);
+    });
+}
