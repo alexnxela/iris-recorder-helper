@@ -3,7 +3,13 @@ The iris-recorder-helper application is an assistant in recording audio sessions
 
 The application is based on InterSystems IRIS, Python (Flask, SQLALchemy ORM) and simple Javascript with jQuery and Bootstrap 5
 
+[![OEX](https://img.shields.io/badge/Available%20on-Intersystems%20Open%20Exchange-00b2a9.svg)](https://openexchange.intersystems.com/package/iris-recorder-helper)
+[![license](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/alexnxela/iris-recorder-helper/blob/master/LICENSE)
+<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/alexnxela/iris-recorder-helper">
+![Support](https://img.shields.io/badge/Support-mobile_version-blue)
 # In practice
+Watch a demo of how the service works https://www.youtube.com/watch?v=O2yh-jorDs4
+
 ![Main](https://github.com/alexnxela/iris-recorder-helper/blob/master/demo/main.png?raw=true)
 
 
@@ -11,6 +17,12 @@ The application is based on InterSystems IRIS, Python (Flask, SQLALchemy ORM) an
 * Convert voice to text
 * AI-powered text recognition
 * Shortening text with your own settings and in different roles
+
+# TODO
+* List of your sessions with recordings
+* Loading audio via files
+* Working on your server with local models
+* Capturing a microphone from another source (for example zoom)
 
 # Installation
 1. Clone/git pull the repo into any local directory
@@ -29,6 +41,11 @@ git clone https://github.com/alexnxela/iris-recorder-helper.git
 
 ```
 docker-compose up -d 
+```
+---
+**Install with IPM**
+```objectscript
+zpm "install iris-recorder-helper"
 ```
 
 ## How to setup
