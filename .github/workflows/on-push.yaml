@@ -9,7 +9,7 @@ on:
 
 jobs:
   deploy:
-    uses: alexnxela/iris-recorder-helper/blob/master/.github/workflows/build-default.yaml@master
+    uses: ./build-default.yaml@master
     with:
       # Replace the name: parameter below to have your application deployed at
       # https://project-name.demo.community.intersystems.com/
