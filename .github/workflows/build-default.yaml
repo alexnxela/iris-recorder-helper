@@ -10,7 +10,7 @@ on:
       memory:
         description: 'Memory for the instance'
         type: string
-        default: 512Mi
+        default: 1Gi
       port:
         description: 'WebPort for the running instance'
         type: number
