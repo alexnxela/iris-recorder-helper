@@ -91,9 +91,7 @@ jobs:
 
       - name: Build and Push image
         run: |
-          echo "${{ secrets.CONFIG_BASE64 }}" > ./rh/flask/app/config.json.b64
-          cat ./rh/flask/app/config.json.b64 | base64 -d
-          cat ./rh/flask/app/config.json.b64 | base64 -d > ./rh/flask/app/config.json
+          echo "${{ secrets.CONFIG_BASE64 }}" > ./rh/flask/app/config.b64
           docker buildx build -t ${GCR_LOCATION}/${PROJECT_ID}/${IMAGE_NAME}:${GITHUB_SHA} --push .
       - name: Deploy to Cloud Run
         run: |
