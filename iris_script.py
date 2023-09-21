@@ -13,8 +13,6 @@ iris.cls('Security.Users').UnExpireUserPasswords("*")
 # switch namespace to IRISAPP built by merge.cpf
 iris.system.Process.SetNamespace("IRISAPP")
 
-print(os.environ.get('TEST_SECRET'))
-
 # load ipm package listed in module.xml
 #iris.cls('%ZPM.PackageManager').Shell("load /home/irisowner/dev -v")
 assert ipm('load /home/irisowner/dev -v')
