@@ -27,7 +27,7 @@ def init_app():
 
     db.init_app(app)
     with app.app_context():
-        #db.drop_all()
+        # db.drop_all()
         db.create_all()
 
     @app.route('/summary', methods=['POST'])
@@ -46,12 +46,13 @@ def init_app():
             if records:
                 for record in records:
                     if record.text:
-                        msgs += "\n"+record.text
+                        msgs += "\n" + record.text
             else:
                 raise "Msgs is empty"
 
             prompt = prompt.replace("${MSGS}", msgs)
 
+            """
             print('PROMPT:', prompt)
 
             response = openai.Completion.create(
@@ -60,19 +61,20 @@ def init_app():
                 temperature=JSON_CONFIG['OPENAI_MAX_TEMP']
             )
             print(response)
-
+            """
 
             response = openai.ChatCompletion.create(
-                    model="gpt-3.5-turbo",
-                    messages=[
-                        {"role": "user", "content": f"Summarize into one sentence: {text_to_summarize}"},
-                    ],
-                )
-                summary = response["choices"][0]["message"]["content"]
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "user", "content": prompt},
+                ],
+            )
 
-            msg = response.choices[0].text.strip()
+            print(response)
 
-            return jsonify({"msg":msg})
+            msg = response["choices"][0]["message"]["content"].strip()
+
+            return jsonify({"msg": msg})
         except Exception as e:
             return f'Error: {str(e)}', 500
 
