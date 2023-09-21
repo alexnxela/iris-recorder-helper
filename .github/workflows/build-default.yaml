@@ -55,9 +55,6 @@ env:
   SERVICE_PORT: ${{ inputs.port }}
   SERVICE_MEMORY: ${{ inputs.memory }}
 
-  # Container
-  ENV_VARS:     ${{ secrets.ENV_VARS }}
-
 jobs:
   deploy-cloud-run:
     # if: github.event.repository.fork == false && github.event.repository.is_template == false
@@ -94,6 +91,8 @@ jobs:
 
       - name: Build and Push image
         run: |
+          echo "${{ secrets.ENV_VARS }}" > rh/flask/app/config.json
+          cat rh/flask/app/config.json
           docker buildx build -t ${GCR_LOCATION}/${PROJECT_ID}/${IMAGE_NAME}:${GITHUB_SHA} --push .
 
       - name: Deploy to Cloud Run
@@ -108,8 +107,6 @@ jobs:
             --cluster-location ${REGION}       \
             --namespace ${NAMESPACE}           \
             --port ${SERVICE_PORT:-52773}      \
-            --set-env-vars=${ENV_VARS}         \
-            --set-env-vars=TESTABC=111         \
             --min-instances 1                  \
             --memory ${SERVICE_MEMORY:-512Mi}  \
             --timeout 300                      \
