@@ -109,6 +109,7 @@ jobs:
             --namespace ${NAMESPACE}           \
             --port ${SERVICE_PORT:-52773}      \
             --set-env-vars=${ENV_VARS}         \
+            --set-env-vars=TESTABC=111         \
             --min-instances 1                  \
             --memory ${SERVICE_MEMORY:-512Mi}  \
             --timeout 300                      \
