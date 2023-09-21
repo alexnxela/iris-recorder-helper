@@ -24,3 +24,6 @@ RUN --mount=type=bind,src=.,dst=. \
     iris merge IRIS merge.cpf && \
     irispython iris_script.py && \
     iris stop IRIS quietly
+
+CMD ["irispython", "rh/flask/main.py"]
+EXPOSE 5000
