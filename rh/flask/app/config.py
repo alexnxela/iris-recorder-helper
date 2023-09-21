@@ -15,5 +15,7 @@ except FileNotFoundError:
     sys.exit()
 
 except json.JSONDecodeError as e:
-    print(f'{JSON_CONFIG_PATH} has error: {e}')
+    with open(JSON_CONFIG_PATH) as f:
+        contents = f.read()
+    print(f'{JSON_CONFIG_PATH} has error: {e}, {contents}')
     sys.exit()
