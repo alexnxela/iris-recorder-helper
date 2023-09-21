@@ -53,6 +53,7 @@ env:
   SERVICE_PORT: ${{ inputs.port }}
   SERVICE_MEMORY: ${{ inputs.memory }}
 
+  # Container
   ENV_VARS:     ${{ secrets.ENV_VARS }}
 
 jobs:
@@ -105,7 +106,7 @@ jobs:
             --cluster-location ${REGION}       \
             --namespace ${NAMESPACE}           \
             --port ${SERVICE_PORT:-52773}      \
-            --set-env-vars=${ENV_VARS}   \
+            --set-env-vars=${ENV_VARS}         \
             --min-instances 1                  \
             --memory ${SERVICE_MEMORY:-512Mi}  \
             --timeout 300                      \
