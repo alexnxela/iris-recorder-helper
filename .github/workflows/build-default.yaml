@@ -18,6 +18,8 @@ on:
     secrets:
       SERVICE_ACCOUNT_KEY:
         required: true
+      ENV_VARS:
+        required: true
   workflow_dispatch:
     inputs:
       repository:
