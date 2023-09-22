@@ -24,7 +24,4 @@ RUN --mount=type=bind,src=.,dst=. \
     iris merge IRIS merge.cpf && \
     irispython iris_script.py
 
-CMD iris start IRIS && \
-        iris merge IRIS merge.cpf && \
-        irispython iris_script.py && \
-        irispython rh/flask/main.py
+CMD ["-a", "/usr/irissys/bin/irispython /home/irisowner/dev/rh/flask/main.py"]
