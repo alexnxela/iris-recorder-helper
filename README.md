@@ -1,3 +1,7 @@
+# Update
+You can read my article on how I made the application
+https://community.intersystems.com/post/cookbook-preparing-your-own-assistant-meetings
+
 # About
 The iris-recorder-helper application is an assistant in recording audio sessions with subsequent decoding of audio into text and summarizing up or other things (to your taste).
 
