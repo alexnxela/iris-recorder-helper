@@ -2,8 +2,9 @@ name: On push
 
 on:
   workflow_call:
-    branches:
-      - master
+#  push:
+#    branches:
+#      - master
   workflow_dispatch:
 
 jobs:
