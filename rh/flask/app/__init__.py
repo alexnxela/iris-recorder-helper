@@ -135,4 +135,31 @@ def init_app():
     def record_js():
         return send_file('./static/record.js')
 
+    @app.route('/autoclean')
+    def autoclean():
+        from iris_cron import Task
+        import iris
+
+        task_name = 'iris-recorder-helper-cleaner'
+
+        task_found = False
+        tasks = Task.get_tasks()
+        for item in tasks:
+            if item['name'] == task_name:
+                task_found = True
+
+        task_id = 0
+        if not task_found:
+            task = """import iris 
+            iris.sql.exec("DELETE FROM Record WHERE date_created <= DATEADD(DAY, -2, CURRENT_TIMESTAMP)")
+            """
+
+            tid = iris.ref(0)
+            command = f'w ##class(%SYS.Python).Run("{task}")'
+            # 0 0 6 * * * - at 6 am every day
+            iris.cls('dc.cron.task').Start(task_name, '0 0 6 * * *', command, True, tid)
+            task_id = tid.value
+
+        return f"Task id: {task_id}", 200
+
     return app
