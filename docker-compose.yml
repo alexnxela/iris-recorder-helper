@@ -6,6 +6,7 @@ services:
       dockerfile: Dockerfile
       args:
         - DOCKER_BUILDKIT=1
+    command: ["-a", "/usr/irissys/bin/irispython /home/irisowner/dev/rh/flask/main.py"]
     restart: always
     ports:
       # IRIS native

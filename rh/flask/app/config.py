@@ -5,11 +5,19 @@ import sys
 import base64
 
 APP_PATH = os.path.dirname(os.path.abspath(__file__))
-JSON_CONFIG_PATH = APP_PATH+"/config.b64"
+JSON_CONFIG_PATH = APP_PATH + "/config.b64"
+
 try:
-    with open(JSON_CONFIG_PATH, 'r') as file:
-        contents = file.read()
-    JSON_CONFIG = json.loads(base64.b64decode(contents).decode('utf-8'))
+    if os.path.isfile(JSON_CONFIG_PATH):
+        with open(JSON_CONFIG_PATH, 'r') as file:
+            contents = file.read()
+            JSON_CONFIG = json.loads(base64.b64decode(contents).decode('utf-8'))
+    else:
+        JSON_CONFIG_PATH = APP_PATH + "/config.json"
+        with open(JSON_CONFIG_PATH, 'r') as file:
+            contents = file.read()
+            JSON_CONFIG = json.loads(contents)
+
 
 except FileNotFoundError:
     print(f'{JSON_CONFIG_PATH} not found')
