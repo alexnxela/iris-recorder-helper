@@ -1,0 +1,5 @@
+[
+ {"key": "OPENAI_KEY", "question": "OPENAI_KEY:", "type": "str"},
+ {"key": "OPENAI_MAX_TEMP", "question": "OPENAI_MAX_TEMP (0.9)", "default": 0.9, "type": "float"},
+ {"key": "IRIS_URL", "question": "IRIS_URL (iris://_SYSTEM:SYS@127.0.0.1:1972/USER):", "default": "iris://_SYSTEM:SYS@127.0.0.1:1972/USER", "type": "str"}
+]

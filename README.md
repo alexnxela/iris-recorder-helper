@@ -45,6 +45,8 @@ git clone https://github.com/alexnxela/iris-recorder-helper.git
 3. Run the IRIS container:
 
 ```
+docker-compose run iris irispython ./rh/flask/app/configer.py
+
 docker-compose up -d
 ```
 ---
