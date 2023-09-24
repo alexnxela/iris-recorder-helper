@@ -45,7 +45,7 @@ git clone https://github.com/alexnxela/iris-recorder-helper.git
 3. Run the IRIS container:
 
 ```
-docker-compose up -d 
+docker-compose up -d
 ```
 ---
 **Install with IPM**
@@ -54,7 +54,7 @@ zpm "install iris-recorder-helper"
 ```
 
 ## How to setup
- You should put the parameters file here **./rh/flask/config.json**
+ You should put the parameters file here **./rh/flask/app/config.json**
 ```json
 {
   "OPENAI_KEY": "sk-***",
